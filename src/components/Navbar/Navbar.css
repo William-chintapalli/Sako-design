@@ -1,0 +1,53 @@
+.navbar{position:relative;top:0;left:0;width:100%;height:var(--nav-h);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;gap:24px;background:#fff;z-index:10000}
+.navbar.fixed{position:fixed}
+.logo{display:flex;align-items:center;text-decoration:none;color:inherit;flex-shrink:0}
+.logo-img{width:60px;height:auto;margin-right:12px;mix-blend-mode:multiply}
+.logo-text-img{height:66px;width:auto;display:block}
+
+/* 35px apart, plain underline on hover, no active state; Futura PT Light 20/40 */
+.menu{display:flex;align-items:center;gap:35px}
+.menu a{color:#000;text-decoration:none;font-size:20px;line-height:40px;font-weight:300;white-space:nowrap}
+.menu a:hover{text-decoration:underline}
+
+/* research page: its own header layout in the original (42px gaps, logo text 260px wide) */
+.navbar--research{padding:20px 45px}
+.navbar--research .logo-img{margin-right:14px}
+.navbar--research .logo-text-img{height:auto;width:260px}
+.navbar--research .menu{gap:42px;margin-right:89px}
+.navbar--research .menu a:hover{text-decoration:none;opacity:.6}
+/* publication page: slightly taller header */
+.navbar--publication{height:110px;padding:22px 40px}
+.navbar--publication .menu{gap:40px}
+.navbar--publication .menu a{position:relative;color:#111;transition:.3s ease}
+.navbar--publication .menu a::after{content:"";position:absolute;left:0;bottom:2px;width:100%;height:2px;background:#111;transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.navbar--publication .menu a:hover{text-decoration:none;opacity:.6}
+.navbar--publication .menu a:hover::after{transform:scaleX(1)}
+/* contact page: softer hover, as the original */
+.navbar--contact .menu a{color:#111;transition:.3s ease}
+.navbar--contact .menu a:hover{text-decoration:none;opacity:.6}
+.menu a:focus-visible,.side-menu a:focus-visible,.hamburger:focus-visible,.close-btn:focus-visible{outline:2px solid #a56243;outline-offset:4px}
+
+.hamburger{display:none;font-size:28px;cursor:pointer;margin-left:auto;background:none;border:0;padding:0;color:#000}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:.3s;z-index:10001}
+.menu-overlay.active{opacity:1;visibility:visible}
+.side-menu{position:fixed;top:0;right:-100%;width:80%;max-width:360px;height:100%;background:#fff;padding:80px 40px;display:flex;flex-direction:column;gap:36px;transition:right .4s ease,visibility .4s;visibility:hidden;overflow-y:auto;z-index:10002}
+.side-menu.active{right:0;visibility:visible}
+.side-menu a{text-decoration:none;color:#000;font-size:22px;line-height:32px}
+.close-btn{position:absolute;top:25px;right:25px;font-size:30px;cursor:pointer;background:none;border:0;color:#000}
+
+/* below the video's desktop width the 35px gaps tighten so the 7 links still fit beside the logo */
+@media (max-width:1250px){
+  .menu,.navbar--research .menu,.navbar--publication .menu{gap:clamp(16px,2.6vw,35px)}
+  .navbar--research .menu{margin-right:0}
+}
+@media (max-width:1000px){
+  .menu{display:none}
+  .hamburger{display:block}
+}
+@media (max-width:890px){
+  .navbar,.navbar--research,.navbar--publication{height:var(--nav-h);padding:15px 20px}
+  .navbar--research .logo-text-img{width:auto;height:50px}
+  .logo{max-width:70%}
+  .logo-img{width:50px;height:50px}
+  .logo-text-img{height:50px}
+}

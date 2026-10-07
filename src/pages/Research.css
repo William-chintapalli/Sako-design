@@ -1,0 +1,27 @@
+.research-banner{display:block;width:100%;overflow:hidden}
+.research-banner img{width:100%;display:block;object-fit:cover}
+
+.research-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:60px 46px;padding:70px 8% 110px}
+
+.research-card{display:block;width:260px;height:260px;border-radius:50%;overflow:hidden;position:relative;cursor:pointer;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(0,0,0,.14);text-decoration:none;color:#fff;transition:transform .4s ease,box-shadow .4s ease}
+.research-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.22)}
+.research-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.research-card:hover img{transform:scale(1.08)}
+.research-card::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.25) 55%,transparent 85%)}
+
+.card-content{position:absolute;left:0;right:0;bottom:0;z-index:2;text-align:center;padding:0 26px 26px}
+.card-content span{display:block;font-size:12px;line-height:18px;color:#e3c48f;margin-bottom:4px}
+.card-content h3{margin:0 0 4px;font-size:20px;line-height:24px}
+.card-content p{margin:0 0 6px;color:rgba(255,255,255,.85);font-size:14px;line-height:20px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-content .read-more{display:inline-block;color:#fff;font-size:12px;line-height:18px}
+.research-card:hover .read-more{text-decoration:underline}
+
+@media (max-width:890px){
+  .research-grid{gap:40px 28px;padding:50px 6% 80px}
+  .research-card{width:210px;height:210px}
+  .card-content h3{font-size:18px;line-height:22px}
+}

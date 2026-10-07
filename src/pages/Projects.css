@@ -1,0 +1,6 @@
+.projects-page{position:relative;z-index:1;padding-bottom:110px;animation:fadePage 1s ease}
+/* desktop: 5 columns of the site grid, so every card is centred on a dashed line (like Home) */
+.projects-grid{display:grid;grid-template-columns:repeat(5,var(--w));gap:70px var(--gap);padding:40px var(--pad) 0}
+.projects-grid .project-card-media{background:#fff}
+@media (max-width:890px){.projects-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:50px 20px;padding:30px 20px 0}}
+@media (max-width:520px){.projects-grid{grid-template-columns:1fr}}

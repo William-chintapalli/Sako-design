@@ -1,0 +1,31 @@
+.publication-page{min-height:100vh;background:radial-gradient(circle at top left,#f3f3f3,#ffffff 45%)}
+
+/* measured from the reference video: each circle is ~25.3% of the width, centred on dashed lines 1–4,
+   so neighbours overlap on purpose; the second one sits half a diameter lower and runs off the bottom.
+   Later circles stack over earlier ones (BAZAR over ARCHITECT over rtf over ArchitectureLive). */
+.publication-gallery{--d:25.3vw;--mid:calc((100vh - 110px)/2 + 10px);position:relative;width:100%;height:calc(100vh - 110px + 50px);min-height:460px;overflow:hidden}
+
+/* 5 dashed lines at 1/6 … 5/6 of the width */
+.pub-grid-lines{position:absolute;inset:0;display:flex;justify-content:space-evenly;pointer-events:none;z-index:0}
+.pub-grid-lines span{width:0;height:100%;border-left:2px dashed rgba(0,0,0,.25)}
+
+.pub-track{position:absolute;inset:0}
+.pub-item{position:absolute;top:var(--mid);left:calc(var(--i) * 100% / 6);width:var(--d);height:var(--d);transform:translate(-50%,-50%);z-index:var(--i)}
+.pub-item:nth-child(2){transform:translate(-50%,0)}
+
+.pub-sketch,.pub-circle{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;transition:opacity .6s ease}
+/* ArchitectureLive shows its sketch until hovered (or picked with the arrows), then the article cover */
+.pub-item.has-sketch .pub-circle{opacity:0}
+.pub-item.has-sketch.active .pub-sketch{opacity:0}
+.pub-item.has-sketch.active .pub-circle{opacity:1}
+
+.pub-arrow{position:absolute;top:var(--mid);transform:translateY(-50%);width:55px;height:55px;border:0;background:none;font-size:45px;cursor:pointer;z-index:100;color:#111;transition:transform .2s}
+.pub-arrow:hover{transform:translateY(-50%) scale(1.2)}
+.pub-arrow.prev{left:20px}.pub-arrow.next{right:20px}
+
+@media (max-width:890px){
+  .publication-gallery{--d:min(70vw,300px);height:auto;min-height:0;padding:40px 0 60px}
+  .pub-grid-lines,.pub-arrow{display:none}
+  .pub-track{position:static;display:flex;flex-direction:column;align-items:center;gap:40px}
+  .pub-item,.pub-item:nth-child(2){position:relative;top:auto;left:auto;transform:none}
+}

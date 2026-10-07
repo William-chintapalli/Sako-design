@@ -1,0 +1,115 @@
+
+/* ===== ARROWS / CLOSE ===== */
+.pg-arrow{position:fixed;top:50%;transform:translateY(-50%);width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.9);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1000000;color:#000}
+.pg-arrow:hover{background:grey;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.pg-arrow.left{left:7px}.pg-arrow.right{right:7px}
+.close-project{position:fixed;top:calc(var(--nav-h) + 14px);right:16px;width:38px;height:38px;border:1px solid #999;border-radius:50%;background:#fff;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:6000;color:#000}
+
+/* ===== SHARED CARD PARTS ===== */
+.project-item{position:relative;cursor:pointer}
+.img-box{position:relative}
+.img-box img{position:absolute;top:50%;left:50%;max-width:none;object-fit:contain;transform:translate(-50%,-50%);transition:opacity .4s ease}
+.sketch-img{opacity:1;z-index:2}
+.color-img{opacity:0;z-index:3;pointer-events:none}
+.grid-line{position:absolute;left:calc(50% - .5px);top:-600px;bottom:-600px;width:1px;background:var(--dash);z-index:10;pointer-events:none}
+.project-title{font-size:14px;line-height:20px}
+.project-details{display:none}
+.project-info{font-size:12px;line-height:20px;color:#222}
+.project-info p{margin:0 0 8px}
+.project-info .about{margin-top:14px;font-size:14px;line-height:28px}
+.project-slider{display:none}
+.gallery-caption{margin:0;font-size:14px;line-height:20px;color:#333}
+.similar-projects h2{margin:0 0 28px;font-size:20px}
+.similar-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}
+.similar-card{cursor:pointer;background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left}
+.similar-card img{width:100%;height:180px;object-fit:contain;display:block}
+.similar-card span{display:block;margin-top:12px;font-size:14px;line-height:20px}
+.similar-card:hover span{text-decoration:underline}
+.pg-mobile-footer{display:none}
+
+/* ===================== DESKTOP ===================== */
+@media (min-width:891px){
+  body.gallery-page{overflow:hidden;height:100vh}
+  .projects{display:flex;gap:var(--gap);height:100vh;padding:var(--nav-h) var(--pad) 0;align-items:center;overflow:hidden}
+  .project-item{flex:0 0 var(--w);width:var(--w);height:372px;top:60px;z-index:2}
+  .img-box{width:100%;height:170px}
+  .img-box img{width:var(--img);height:var(--img)}
+  /* baseline that joins the 5 houses */
+  .project-item:not(.desktop-active) .img-box::after{content:"";position:absolute;top:calc(85px + .179*var(--img));left:calc(var(--gap)/-2);width:calc(100% + var(--gap));height:1px;background:rgba(120,120,120,.55)}
+  .project-title{position:absolute;left:0;width:100%;text-align:center;top:calc(85px + .179*var(--img) + 70px);z-index:3}
+  @media (hover:hover){
+    .project-item:not(.desktop-active) .img-box:hover .sketch-img{opacity:0}
+    .project-item:not(.desktop-active) .img-box:hover .color-img{opacity:1}
+  }
+
+  /* ---- opened project ---- */
+  body.project-open .project-item:not(.desktop-active){visibility:hidden}
+  body.project-open::after{content:"";position:fixed;top:var(--nav-h);bottom:0;left:0;right:0;pointer-events:none;z-index:5000;
+    background-image:var(--dash),var(--dash),var(--dash),var(--dash),var(--dash);background-repeat:no-repeat;background-size:1px 100%;
+    background-position:calc(var(--l1) - .5px) 0,calc(var(--l2) - .5px) 0,calc(var(--l3) - .5px) 0,calc(var(--l4) - .5px) 0,calc(var(--l5) - .5px) 0}
+  body.project-open .close-project{display:flex}
+  .project-item.desktop-active{position:fixed;top:var(--nav-h);left:0;width:100vw;height:calc(100vh - var(--nav-h));z-index:1000;cursor:default;overflow:hidden;animation:pgOpen .8s ease}
+  @keyframes pgOpen{from{transform:translateY(30px);filter:blur(6px)}}
+  @keyframes pgFade{from{opacity:0;transform:translateY(14px)}}
+  .desktop-active .img-box{position:absolute;left:calc((var(--l2) - var(--c))/2);top:0;width:var(--c);height:var(--c);z-index:1001;cursor:pointer;animation:pgFade 1s ease both}
+  .desktop-active .img-box img{width:var(--c);height:var(--c)}
+  .desktop-active .sketch-img{opacity:0}
+  .desktop-active .color-img{opacity:1}
+  .desktop-active .grid-line{display:none}
+  .project-item.desktop-active::after{content:"";position:absolute;top:calc(.679*var(--c));left:calc(var(--l2)/2 - 40px);right:0;height:1px;background:#999;z-index:1;transition:opacity .25s}
+  .project-item.desktop-active.scrolled::after{opacity:0}
+  .desktop-active .project-title{left:28px;width:calc(var(--l2) - 56px);text-align:left;top:calc(.679*var(--c) + 22px);font-size:20px;z-index:1001;animation:pgFade 1s ease .3s both}
+  .desktop-active .project-details{display:block;position:absolute;left:28px;width:calc(var(--l2) - 56px);top:calc(.679*var(--c) + 58px);z-index:1001;animation:pgFade 1s ease .6s both}
+  @media (max-height:800px){.project-info{line-height:18px}.project-info .about{line-height:24px}.project-info p{margin-bottom:5px}}
+  /* right side: vertical gallery, scrolls between line 2 and line 5 */
+  .desktop-active .project-slider{display:flex;flex-direction:column;gap:48px;position:absolute;inset:0;z-index:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
+    padding:calc(.679*var(--c) + 22px) calc(100vw - var(--l5)) 0 var(--l2)}
+  .project-slider::-webkit-scrollbar{display:none}
+  .project-slider .slider-image{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain}
+  .slide-btn{display:none!important}
+  .desktop-active .similar-projects{flex-shrink:0;width:100vw;margin:30px 0 0 calc(-1*var(--l2));padding:0 35px 40px;background:#fff}
+  .desktop-active .project-socials{flex-shrink:0;width:100vw;margin-left:calc(-1*var(--l2))}
+}
+
+/* ===================== MOBILE ===================== */
+@media (max-width:890px){
+  /* arrows sit beside the drawing and scroll with the page instead of covering the text */
+  .pg-arrow{position:absolute;top:calc(var(--nav-h) + 160px)}
+  .projects{display:flex;width:100vw;padding-top:var(--nav-h);overflow-x:auto;align-items:flex-start;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .projects::-webkit-scrollbar{display:none}
+  .project-item{flex:0 0 100vw;width:100vw;padding-bottom:60px;scroll-snap-align:start}
+  .img-box{height:320px}
+  .img-box img{width:220px;height:auto;max-height:330px}
+  .grid-line{display:none}
+  .project-title{margin-top:20px;padding-left:6%;font-size:20px}
+  .project-item.active .sketch-img{opacity:0}
+  .project-item.active .color-img{opacity:1}
+  .project-item.active .project-details{display:block;width:88%;margin:20px auto 0;animation:pgUp .8s ease both}
+  @keyframes pgUp{from{opacity:0;transform:translateY(30px)}}
+  .project-item.active .project-slider{display:block;position:relative;width:100vw;height:340px;margin-top:30px;overflow:hidden}
+  .slider-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+  .slider-image.on{opacity:1;z-index:2}
+  .gallery-caption,.similar-projects,.project-socials{display:none!important}
+  .slide-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.95);z-index:9999;display:flex;align-items:center;justify-content:center;font-size:20px;color:#000}
+  .prev-btn{left:16px}.next-btn{right:16px}
+  .pg-mobile-footer{display:flex}
+}
+
+.img-box:focus-visible{outline:2px solid #a56243;outline-offset:6px}
+
+/* ===================== HOME VARIANT =====================
+   measured from the reference video: on Home the row sits higher, and the opened project
+   uses a larger circle centred on a third of the left column, a centred title and larger details */
+@media (min-width:891px){
+  .projects.home{--ch:calc(var(--c) * 1.14)}
+  .projects.home .project-item:not(.desktop-active){top:2px}
+  .projects.home .project-item:not(.desktop-active) .project-title{top:calc(85px + .179*var(--img) + 88px)}
+
+  .projects.home .desktop-active .img-box{left:calc(var(--l2)/3 - var(--ch)/2 + 31px);top:-17px;width:var(--ch);height:var(--ch)}
+  .projects.home .desktop-active .img-box img{width:var(--ch);height:var(--ch)}
+  .projects.home .project-item.desktop-active::after{top:calc(.66*var(--ch) - 10px);left:calc(var(--l2)/3 - 17px)}
+  .projects.home .desktop-active .project-title{left:0;width:calc(var(--l2)*.88);text-align:center;top:calc(.66*var(--ch) + 17px);font-size:20px}
+  .projects.home .desktop-active .project-details{left:28px;width:calc(var(--l2) - 90px);top:calc(.66*var(--ch) + 44px)}
+  .projects.home .desktop-active .project-info p{margin:0 0 8px}
+  .projects.home .desktop-active .project-slider{padding-top:calc(.66*var(--ch) - 10px)}
+}

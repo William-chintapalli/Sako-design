@@ -1,0 +1,49 @@
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+/* Futura PT Light everywhere (the Adobe Fonts kit only serves weight 300, so nothing asks for another weight) */
+:root{--font:"futura-pt",sans-serif}
+body{font-family:var(--font);font-weight:300;font-style:normal;letter-spacing:normal;background:#fff;color:#111;overflow-x:hidden}
+button,input,select,textarea{font-family:inherit;font-weight:inherit}
+b,strong,h1,h2,h3,h4,h5,h6{font-weight:300}
+img{max-width:100%}
+
+:root{--nav-h:106px}
+@media (max-width:890px){:root{--nav-h:80px}}
+
+/* shared entrance used by every page (was the About/Contact "fadePage") */
+@keyframes fadePage{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+
+
+/* ===== 5 cards always tile the screen; l1..l5 = centre of each card = the 5 grid lines ===== */
+:root{
+  --pad:clamp(40px,5vw,120px);
+  --gap:clamp(20px,2.2vw,40px);
+  --w:calc((100vw - 2*var(--pad) - 4*var(--gap)) / 5);
+  --l1:calc(var(--pad) + var(--w)/2);
+  --l2:calc(var(--l1) + var(--w) + var(--gap));
+  --l3:calc(var(--l2) + var(--w) + var(--gap));
+  --l4:calc(var(--l3) + var(--w) + var(--gap));
+  --l5:calc(var(--l4) + var(--w) + var(--gap));
+  --img:clamp(260px,26vw,500px);      /* home image size   */
+  --c:clamp(260px,23vw,340px);        /* opened circle size */
+  --dash:repeating-linear-gradient(to bottom,#555 0,#555 6px,transparent 6px,transparent 12px);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+/* the 5 dashed lines behind content pages (Projects, Services, project pages) */
+.grid-backdrop{position:fixed;top:var(--nav-h);bottom:0;left:0;right:0;pointer-events:none;z-index:0;
+  background-image:var(--dash),var(--dash),var(--dash),var(--dash),var(--dash);background-repeat:no-repeat;background-size:1px 100%;
+  background-position:calc(var(--l1) - .5px) 0,calc(var(--l2) - .5px) 0,calc(var(--l3) - .5px) 0,calc(var(--l4) - .5px) 0,calc(var(--l5) - .5px) 0}
+@media (max-width:890px){.grid-backdrop{display:none}}
+
+/* scroll reveal (see hooks/useReveal.js) */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease;transition-delay:var(--delay,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* small page heading used on Projects / Services */
+.page-heading{position:relative;z-index:1;margin:0;padding:50px var(--pad) 10px;font-size:clamp(28px,3vw,44px);font-weight:300}
+.page-intro{position:relative;z-index:1;max-width:760px;margin:0;padding:0 var(--pad);font-size:14px;line-height:28px;color:#444}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

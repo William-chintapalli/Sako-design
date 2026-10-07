@@ -1,0 +1,34 @@
+/* left column = up to grid line 2, photographs between lines 2 and 5 (same as the opened project on Home) */
+.project-page{position:relative;z-index:1;display:grid;grid-template-columns:var(--l2) minmax(0,1fr);padding-right:calc(100vw - var(--l5));animation:fadePage 1s ease}
+.pp-side{position:sticky;top:0;align-self:start;padding:30px 28px 40px}
+.pp-circle{display:block;width:var(--c);height:var(--c);margin:0 auto;object-fit:contain}
+.pp-title{margin:18px 0 16px;font-size:20px}
+.pp-side .project-info{font-size:12px;line-height:20px;color:#222}
+.pp-side .project-info p{margin:0 0 8px}
+.pp-side .project-info .about{margin-top:14px}
+.pp-pager{display:flex;flex-direction:column;gap:8px;margin-top:26px;font-size:12px}
+.pp-pager a{color:#a56243;text-decoration:none}
+.pp-pager a:hover{color:#000;text-decoration:underline}
+
+.pp-gallery{display:flex;flex-direction:column;gap:48px;padding:30px 0 60px;background:#fff}
+.pp-gallery img{display:block;width:100%;height:auto}
+.pp-caption{margin:-30px 0 0;font-size:14px;line-height:20px;color:#333}
+
+.pp-similar{position:relative;z-index:1;background:#fff;padding:40px 35px 50px}
+.pp-similar h2{margin:0 0 28px;font-size:20px}
+.pp-similar-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px}
+.pp-similar-card{color:#111;text-decoration:none}
+.pp-similar-card img{display:block;width:100%;height:160px;object-fit:contain}
+.pp-similar-card span{display:block;margin-top:12px;font-size:14px;line-height:20px}
+.pp-similar-card:hover span{text-decoration:underline}
+
+@media (max-width:1100px){.pp-similar-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:890px){
+  .project-page{grid-template-columns:1fr;padding-right:0}
+  .pp-side{position:static;padding:20px 6% 10px}
+  .pp-circle{width:min(70vw,300px);height:min(70vw,300px)}
+  .pp-gallery{gap:24px;padding:10px 0 40px}
+  .pp-caption{margin-top:-12px;padding:0 6%}
+  .pp-similar{padding:30px 6% 40px}
+  .pp-similar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

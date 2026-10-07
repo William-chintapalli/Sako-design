@@ -1,0 +1,12 @@
+.about-page{width:100%;padding-bottom:120px;animation:fadePage 1.2s ease;color:#222}
+.about-hero{width:100%;display:flex;justify-content:center;margin-top:40px}
+.about-hero img{width:62%;max-width:950px;height:auto;object-fit:contain}
+.about-content{width:88%;max-width:1450px;margin:90px auto 0}
+.about-content p{font-size:14px;line-height:28px;margin:0 0 28px}
+
+@media (max-width:890px){
+  .about-hero{margin-top:20px}
+  .about-hero img{width:92%}
+  .about-content{width:90%;margin-top:50px}
+  .about-content p{font-size:14px;line-height:28px}
+}

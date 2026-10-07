@@ -1,0 +1,2 @@
+.page-transition{animation:pageFade .6s ease}
+@keyframes pageFade{from{opacity:0}to{opacity:1}}

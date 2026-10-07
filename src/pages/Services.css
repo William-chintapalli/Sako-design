@@ -1,0 +1,28 @@
+.services-page{position:relative;z-index:1;padding-bottom:110px;animation:fadePage 1s ease}
+
+.svc-list{list-style:none;margin:60px 0 0;padding:0 var(--pad)}
+.svc-row:first-child{border-top:1px solid #ddd}
+.svc-row{border-bottom:1px solid #ddd;background:#fff}
+.svc-link{display:flex;align-items:baseline;gap:clamp(20px,4vw,70px);padding:26px 4px;color:#111;text-decoration:none}
+.svc-num{font-size:12px;color:#a56243;min-width:24px}
+.svc-name{font-size:clamp(24px,3.2vw,46px);font-weight:300;transition:transform .45s ease}
+.svc-arrow{margin-left:auto;font-size:22px;opacity:0;transform:translateX(-10px);transition:opacity .35s ease,transform .35s ease}
+a.svc-link:hover .svc-name,a.svc-link:focus-visible .svc-name{transform:translateX(14px)}
+a.svc-link:hover .svc-arrow,a.svc-link:focus-visible .svc-arrow{opacity:1;transform:none}
+a.svc-link:focus-visible{outline:2px solid #a56243;outline-offset:2px}
+
+.svc-motto{max-width:820px;margin:100px auto 0;padding:0 24px;text-align:center;background:#fff}
+.svc-quote{margin:0 0 18px;font-size:clamp(30px,4vw,56px)}
+.svc-motto p:not(.svc-quote){margin:0;font-size:14px;line-height:28px;color:#444}
+
+.svc-cta{margin:90px auto 0;padding:0 24px;text-align:center}
+.svc-cta p{margin:0 0 26px;font-size:14px;line-height:28px}
+.svc-button{display:inline-block;padding:14px 30px;border:1px solid #111;border-radius:40px;color:#111;text-decoration:none;font-size:14px;background:#fff;transition:background .3s ease,color .3s ease}
+.svc-button:hover,.svc-button:focus-visible{background:#111;color:#fff}
+
+@media (max-width:890px){
+  .svc-list{margin-top:40px;padding:0 20px}
+  .svc-link{padding:20px 2px}
+  .svc-arrow{opacity:1;transform:none}
+  .svc-motto{margin-top:70px}
+}

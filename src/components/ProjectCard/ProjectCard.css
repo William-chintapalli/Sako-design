@@ -1,0 +1,10 @@
+.project-card{display:block;text-decoration:none;color:#111;text-align:center}
+.project-card-media{position:relative;aspect-ratio:1/1;overflow:hidden}
+.project-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .4s ease,transform .6s ease}
+.pc-color{opacity:0}
+.project-card:hover .pc-sketch,.project-card:focus-visible .pc-sketch{opacity:0}
+.project-card:hover .pc-color,.project-card:focus-visible .pc-color{opacity:1;transform:scale(1.03)}
+.project-card-title{margin:14px 0 2px;font-size:14px;line-height:20px}
+.project-card-location{margin:0;font-size:12px;line-height:18px;color:#777}
+.project-card:hover .project-card-title{text-decoration:underline}
+.project-card:focus-visible{outline:2px solid #a56243;outline-offset:6px}
